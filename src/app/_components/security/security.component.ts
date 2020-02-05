@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SecurityService } from 'src/app/_services/security.service';
+import { Router } from '@angular/router';
+import { NbDialogService } from '@nebular/theme';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-security',
@@ -12,7 +15,9 @@ export class SecurityComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
-    private secService: SecurityService
+    private secService: SecurityService,
+    private router: Router,
+    private dialogService: NbDialogService    
   ) { }
 
   ngOnInit(): void {
@@ -35,12 +40,12 @@ export class SecurityComponent implements OnInit {
     this.secService.login(json).subscribe(
       (token) => { 
         localStorage.setItem('TOKEN', token);
+        this.router.navigateByUrl('/home');
       },
       (error) => {
         console.log(error);
       },
       () => {
-        //
       }
     );
   }
