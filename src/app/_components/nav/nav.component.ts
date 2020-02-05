@@ -19,15 +19,18 @@ export class NavComponent implements OnInit {
     this.items = [
       { title: 'Home', icon: 'home', link: '/home' },
       { title: 'Animal', icon: 'github', link: '/animal' },
-      { title: 'Pet', icon: 'box', children: [
+      { title: 'Pet', icon: 'gift', children: [
         
-      ] }
+      ] },
+      { title: 'Breed', icon: 'book-open', link: '/breed'}
     ]
     this.animalService.context$.subscribe(x => this.items.find(
       i => i.title == 'Pet').children = x.map(a => {
           return { title: a.name, link: '/pet/' + a.name };
         }
       ));
+
+
   }
 
 }

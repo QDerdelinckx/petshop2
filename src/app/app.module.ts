@@ -15,6 +15,8 @@ import { AnimalComponent } from './_components/animal/animal.component';
 import { LoaderComponent } from './_components/loader/loader.component';
 import { LoaderInterceptor } from './_interceptors/loader.interceptor';
 import { PetComponent } from './_components/pet/pet.component';
+import { BreedComponent } from './_components/breed/breed.component';
+import { TokenInterceptor } from './_interceptors/token.interceptor';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { PetComponent } from './_components/pet/pet.component';
     HomeComponent,
     AnimalComponent,
     LoaderComponent,
-    PetComponent
+    PetComponent,
+    BreedComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { PetComponent } from './_components/pet/pet.component';
     FormsModule,
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })
